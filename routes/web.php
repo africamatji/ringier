@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/listing', [ListingController::class, 'create']);
+Route::get('/listings', [ListingController::class, 'all']);
+Route::post('/listing/{id}', [ListingController::class, 'getById']);
+Route::post('/listings/find/{key}', [ListingController::class, 'find']);
