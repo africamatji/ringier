@@ -22,10 +22,10 @@ class ListingCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255|unique:posts,title',
+            'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0|max:1000',
-            'location' => 'required|string|max:255',
+            'price' => 'required|numeric',
+            'location' => 'required|string',
             'category_id' => 'required|exists:categories,id',
         ];
     }
