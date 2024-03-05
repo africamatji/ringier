@@ -14,13 +14,19 @@
     @csrf
 
     <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title"><br>
+    <input type="text" id="title" name="title" required><br>
 
     <label for="description">Description:</label><br>
-    <textarea id="description" name="description"></textarea><br>
+    <textarea id="description" name="description" required></textarea><br>
+
+    <label for="price">Price:</label><br>
+    <input type="number" id="price" name="price" step="0.01" required><br>
+
+    <label for="location">Location:</label><br>
+    <input type="text" id="location" name="location" required><br>
 
     <label for="category_id">Category:</label><br>
-    <select id="category_id" name="category_id">
+    <select id="category_id" name="category_id" required>
         @foreach($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach

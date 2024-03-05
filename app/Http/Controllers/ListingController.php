@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-use Illuminate\Http\Request;
 use App\Http\Requests\ListingCreateRequest;
+use App\Models\Category;
 
 class ListingController extends Controller
 {
+    public function show()
+    {
+        $categories = Category::all();
+
+        return view('listings.create', compact('categories'));
+    }
+
     public function create(ListingCreateRequest $request)
     {
         Listing::create($request->all());
