@@ -8,6 +8,11 @@ use App\Models\Category;
 
 class ListingController extends Controller
 {
+    public function index()
+    {
+        return view('welcome');
+    }
+
     public function show()
     {
         $categories = Category::all();
@@ -20,7 +25,7 @@ class ListingController extends Controller
         Listing::create($request->all());
 
         $message = 'Listing created';
-        return redirect()->route('listings.all')->with('message', $message);
+        return redirect()->route('listings.home')->with('message', $message);
     }
 
     public function find()
@@ -30,9 +35,7 @@ class ListingController extends Controller
 
     public function all()
     {
-        $listings = Listing::orderBy('created_at', 'desc')->get();
-
-        return view('listings.list', compact('listings'));
+        return view('listings.list');
     }
 
     public function getById($id)
