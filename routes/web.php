@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/listing', [ListingController::class, 'show'])->name('listings.create');
-Route::post('/listings/create', [ListingController::class, 'create'])->name('listings.store');
-Route::get('/listings/all', [ListingController::class, 'all']);
-Route::post('/listing/{id}', [ListingController::class, 'getById']);
+Route::post('/listing', [ListingController::class, 'create'])->name('listings.store');
+Route::get('/listing/{id}', [ListingController::class, 'getById'])->name('listings.details');
+Route::get('/listings', [ListingController::class, 'all'])->name('listings.all');
 Route::post('/listings/find/{key}', [ListingController::class, 'find']);

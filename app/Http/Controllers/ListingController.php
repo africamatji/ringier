@@ -19,9 +19,8 @@ class ListingController extends Controller
     {
         Listing::create($request->all());
 
-        return response()->json([
-            'status' => 'success'
-        ]);
+        $message = 'Listing created';
+        return redirect()->route('listings.all')->with('message', $message);
     }
 
     public function find()
@@ -31,11 +30,17 @@ class ListingController extends Controller
 
     public function all()
     {
+        $listings = Listing::orderBy('created_at', 'desc')->get();
 
+        return view('listings.list', compact('listings'));
     }
 
-    public function getById()
+    public function getById($id)
     {
+        $listing = Listing::find($id);
 
+        return view('listings.details', [
+            'listing' => $listing
+        ]);
     }
 }
