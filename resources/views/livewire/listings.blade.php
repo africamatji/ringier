@@ -15,7 +15,7 @@
             </li>
         @endforeach
     </ul>
-        <p>pagination [1], [2], [3] (LivWire has pagination <code>use Livewire\WithPagination;</code>)</p>
+        {{ $listings->links() }}
     @endif
 </div>
 

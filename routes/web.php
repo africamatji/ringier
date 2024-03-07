@@ -18,4 +18,3 @@ Route::get('/', [ListingController::class, 'index'])->name('listings.home');
 Route::get('/listing', [ListingController::class, 'show'])->name('listings.create');
 Route::post('/listing', [ListingController::class, 'create'])->name('listings.store');
 Route::get('/listing/{id}', [ListingController::class, 'getById'])->name('listings.details');
-Route::post('/listings/find/{key}', [ListingController::class, 'find']);

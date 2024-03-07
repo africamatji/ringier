@@ -3,29 +3,35 @@
 namespace App\Livewire;
 
 use App\Models\Listing;
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\WithPagination;
+use Illuminate\Support\Facades\Log;
 
 class Listings extends Component
 {
-    public $listings;
+    use WithPagination;
     public $search = '';
+    protected $queryString = ['search'];
 
-/*    public function mount()
+    public function updatingSearch()
     {
-        $this->listings = Listing::orderBy('created_at', 'desc')->get();
-    }*/
+        $this->resetPage();
+    }
 
     public function render()
     {
-        Log::info('search', [$this->search]);
-        $this->listings = Listing::where(function ($query) {
-            $query->where('title', 'like', '%'.$this->search.'%')
-                ->orWhere('description', 'like', '%'.$this->search.'%');
-        })
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $query = Listing::orderBy('created_at', 'desc');
 
-        return view('livewire.listings');
+        if (!empty($this->search)) {
+            $query->where(function ($q) {
+                $q->where('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            });
+        }
+        Log::info('result', [$query->get()]);
+        $listings = $query->paginate(5);
+        Log::info('result after pagination', [$listings]);
+
+        return view('livewire.listings', ['listings' => $listings]);
     }
 }
