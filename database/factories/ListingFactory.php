@@ -20,8 +20,8 @@ class ListingFactory extends Factory
         $categories = Category::pluck('id');
 
         return [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'title' => $this->faker->sentence( 3, true),
+            'description' => $this->faker->paragraph( 2,  true),
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'location' => $this->faker->address,
             'category_id' => $this->faker->randomElement($categories),
