@@ -14,11 +14,10 @@ class CategoriesTableSeeder extends Seeder
     public function run(): void
     {
         $categories = [
-            ['name' => 'Automotive', 'created_at' => now(), 'updated_at' => now() ],
-            ['name' => 'Property', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Clothing', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Furniture', 'created_at' => now(), 'updated_at' => now() ],
             ['name' => 'Electronics', 'created_at' => now(), 'updated_at' => now()],
-            ['name' => 'Other', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Cars', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'Property', 'created_at' => now(), 'updated_at' => now()],
         ];
 
         Category::insert($categories);
