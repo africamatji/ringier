@@ -1,21 +1,50 @@
 <div>
-    <input type="text" wire:model.live="search" placeholder="Search...">
-    <h1>Listings <a href="{{ route('listings.create') }}">[+]</a></h1>
     @if (session('message'))
-        <p>{{ session('message') }}</p>
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-3" role="alert">
+            <p class="font-bold">Success!</p>
+            <p>{{ session('message') }}</p>
+        </div>
     @endif
+    <div class="flex">
+        <input type="text" wire:model.live="search" placeholder="What are you looking for?" class="flex-1 bg-gray-100 rounded-xl py-2 px-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" style="background-color: #4a5568">
+        <a href="{{ route('listings.create') }}" class="ml-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
+            Create new listing
+        </a>
+    </div>
     @if($listings->isEmpty())
-        <h4>No listings...</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <h4>No listings...</h4>
+        </div>
     @else
-    <ul>
-        @foreach ($listings as $listing)
-            <li>
-                <h4><a href="{{ route('listings.details', ['id' => $listing->id ])  }}">{{ $listing->title }}</a></h4>
-                <p>{{ $listing->description }}</p>
-            </li>
-        @endforeach
-    </ul>
-        {{ $listings->links() }}
+        <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            @foreach ($listings as $listing)
+                <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="#">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                            <a href="{{ route('listings.details', ['id' => $listing->id ])  }}">{{ $listing->title }}</a>
+                        </h5>
+                    </a>
+                    <h4 class="mb-2 text-xl font-bold tracking-tight text-gray-600 dark:text-gray-400">
+                        R {{ $listing->price }}
+                    </h4>
+                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        {{ $listing->description }}
+                    </p>
+                    <p class="text-gray-500 text-xs">{{ $listing->created_at }}</p>
+                    <a href="{{ route('listings.details', ['id' => $listing->id ])  }}" class="mt-4 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Read more
+                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+        <div class="mt-5">
+            <div class="flex justify-center mt-4">
+                {{ $listings->links() }}
+            </div>
+        </div>
     @endif
 </div>
 

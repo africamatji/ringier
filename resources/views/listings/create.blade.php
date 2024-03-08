@@ -1,38 +1,34 @@
 <!-- resources/views/listings/create.blade.php -->
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Listing</title>
-</head>
-<body>
-<h1>Create Listing</h1>
+@extends('layouts.app')
 
-<form method="POST" action="{{ route('listings.store') }}">
-    @csrf
+@section('title', 'Create listing')
 
-    <label for="title">Title:</label><br>
-    <input type="text" id="title" name="title" required><br>
+@section('content')
+    <h5 class="max-w-sm mx-auto mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Create Listing
+    </h5>
 
-    <label for="description">Description:</label><br>
-    <textarea id="description" name="description" required></textarea><br>
+    <form method="POST" action="{{ route('listings.store') }}" class="max-w-sm mx-auto">
+        @csrf
 
-    <label for="price">Price:</label><br>
-    <input type="number" id="price" name="price" step="0.01" required><br>
+        <input type="text" id="title" name="title" required placeholder="Enter Title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568"><br>
 
-    <label for="location">Location:</label><br>
-    <input type="text" id="location" name="location" required><br>
+        <textarea id="description" name="description" required placeholder="Enter Description" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568"></textarea><br>
 
-    <label for="category_id">Category:</label><br>
-    <select id="category_id" name="category_id" required>
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->name }}</option>
-        @endforeach
-    </select><br>
+        <input type="number" id="price" name="price" step="0.01" placeholder="Enter Price" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568"><br>
 
-    <button type="submit">Create Listing</button>
-</form>
-</body>
-</html>
+        <input type="text" id="location" name="location" required placeholder="Enter Location" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568"><br>
+
+        <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
+        <select id="category_id" name="category_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568">
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select><br>
+
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Create Listing
+        </button>
+    </form>
+@endsection

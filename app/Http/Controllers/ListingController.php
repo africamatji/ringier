@@ -10,7 +10,7 @@ class ListingController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('listings.all');
     }
 
     public function show()
@@ -24,13 +24,9 @@ class ListingController extends Controller
     {
         Listing::create($request->all());
 
-        $message = 'Listing created';
-        return redirect()->route('listings.home')->with('message', $message);
-    }
-
-    public function find()
-    {
-
+        return redirect()
+            ->route('listings.home')
+            ->with('message', "$request->title, created");
     }
 
     public function all()
@@ -40,7 +36,7 @@ class ListingController extends Controller
 
     public function getById($id)
     {
-        $listing = Listing::find($id);
+        $listing = Listing::with(['category'])->find($id);
 
         return view('listings.details', [
             'listing' => $listing
