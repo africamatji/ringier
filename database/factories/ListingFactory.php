@@ -5,6 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
 use App\Models\Currency;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Listing>
@@ -22,10 +23,11 @@ class ListingFactory extends Factory
         $categories = Category::pluck('id');
         $date = $this->faker->optional()->dateTimeBetween('-1 year', 'now');
         $date_offline = $date ? $date->format('Y-m-d H:i:s') : null;
+        $title = $this->faker->sentence( 3, true);
 
         return [
-            'title' => $this->faker->sentence( 3, true),
-            'slug' => $this->faker->sentence( 3, true),
+            'title' => $title,
+            'slug' => Str::slug($title),
             'description' => $this->faker->paragraph( 2,  true),
             'date_offline' => $date_offline,
             'price' => $this->faker->randomFloat(2, 0, 1000),
