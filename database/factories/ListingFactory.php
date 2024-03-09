@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Category;
+use App\Models\Currency;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Listing>
@@ -17,14 +18,21 @@ class ListingFactory extends Factory
      */
     public function definition(): array
     {
+        $currencies = Currency::pluck('id');
         $categories = Category::pluck('id');
+        $date = $this->faker->optional()->dateTimeBetween('-1 year', 'now');
+        $date_offline = $date ? $date->format('Y-m-d H:i:s') : null;
 
         return [
             'title' => $this->faker->sentence( 3, true),
+            'slug' => $this->faker->sentence( 3, true),
             'description' => $this->faker->paragraph( 2,  true),
+            'date_offline' => $date_offline,
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'location' => $this->faker->address,
+            'contact' => $this->faker->randomElement([$this->faker->email, $this->faker->phoneNumber]),
             'category_id' => $this->faker->randomElement($categories),
+            'currency_id' => $this->faker->randomElement($currencies),
         ];
     }
 }

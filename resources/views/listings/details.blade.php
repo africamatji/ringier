@@ -17,13 +17,17 @@
                 {{ $listing->title  }}
             </h5>
             <h4 class="mb-2 text-xl font-bold tracking-tight text-gray-600 dark:text-gray-400">
-                R {{ $listing->price }}
+                {{ $listing->currency->symbol }} {{ $listing->price }}
             </h4>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            <p class="mb-3 text-xl font-normal text-gray-400 dark:text-gray-300">
                 {{ $listing->description  }}
             </p>
-            <p class="text-gray-500 text-s">{{ $listing->created_at  }}</p>
-            <p class="mt-2"><strong>Location</strong> : {{ $listing->location  }}</p>
+            <p><strong>Contacts</strong> : {{ $listing->contact  }}</p>
+            <p><strong>Location</strong> : {{ $listing->location  }}</p>
+            <p class="mt-2 text-gray-300 text-xs">Date Online : {{ $listing->updated_at  }}</p>
+            @if($listing->date_offline)
+                <p class="text-gray-500 text-xs">Date Offline : {{ $listing->date_offline  }}</p>
+            @endif
         </div>
     </a>
 @endsection
