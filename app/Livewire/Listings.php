@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Category;
 use App\Models\Listing;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -11,6 +12,7 @@ class Listings extends Component
 {
     use WithPagination;
     public $search = '';
+    public $search_category_id = null;
     protected $queryString = ['search'];
 
     public function updatingSearch()
@@ -21,17 +23,21 @@ class Listings extends Component
     public function render()
     {
         $query = Listing::orderBy('created_at', 'desc');
+        $categories = Category::all();
 
         if (!empty($this->search)) {
             $query->where(function ($q) {
-                $q->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%');
+                $q->where('title', 'like', '%' . $this->search . '%');
             });
         }
-        Log::info('result', [$query->get()]);
+        if (!empty($this->search_category_id)) {
+            $query->where('category_id', $this->search_category_id);
+        }
         $listings = $query->paginate(5);
-        Log::info('result after pagination', [$listings]);
 
-        return view('livewire.listings', ['listings' => $listings]);
+        return view('livewire.listings', [
+            'listings' => $listings,
+            'categories' => $categories
+        ]);
     }
 }

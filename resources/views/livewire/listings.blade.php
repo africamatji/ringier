@@ -7,6 +7,12 @@
     @endif
     <div class="flex">
         <input type="text" wire:model.live="search" placeholder="What are you looking for?" class="flex-1 bg-gray-100 rounded-xl py-2 px-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" style="background-color: #4a5568">
+        <select wire:model.live="search_category_id"  id="category_id" name="category_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568">
+            <option value="">Select option</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+            @endforeach
+        </select>
         <a href="{{ route('listings.create') }}" class="ml-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
             Create new listing
         </a>
@@ -50,4 +56,3 @@
         </div>
     @endif
 </div>
-
