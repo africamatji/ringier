@@ -28,8 +28,8 @@ class ListingFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
-            'description' => $this->faker->paragraph( 2,  true),
-            'date_created' => $this->faker->dateTimeBetween('-1 year', 'now'),
+            'description' => $this->faker->paragraph( 1,  true),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'date_offline' => $date_offline,
             'price' => $this->faker->randomFloat(2, 0, 1000),
             'location' => $this->faker->address,
