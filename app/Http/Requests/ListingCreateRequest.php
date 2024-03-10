@@ -26,7 +26,9 @@ class ListingCreateRequest extends FormRequest
             'description' => 'required|string|max:255',
             'price' => 'required|numeric',
             'location' => 'required|string',
+            'contact' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'currency_id' => 'required|exists:currencies,id',
         ];
     }
 }
