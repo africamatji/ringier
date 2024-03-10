@@ -17,6 +17,17 @@
             Create new listing
         </a>
     </div>
+    <div class="flex mt-3">
+        <div class="relative">
+            <select wire:model.live="sort" id="sort" name="sort" required class="block appearance-none border border-gray-300 rounded-lg py-2 px-4 bg-white text-gray-900 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                <option value="">Sort by</option>
+                <option value="price_high">Price (High to low)</option>
+                <option value="price_low">Price (Low to High)</option>
+                <option value="date_new">Date (newest)</option>
+                <option value="date_old">Date (oldest)</option>
+            </select>
+        </div>
+    </div>
     @if($listings->isEmpty())
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             <h4>No listings...</h4>
