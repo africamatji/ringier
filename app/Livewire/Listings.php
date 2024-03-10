@@ -11,12 +11,17 @@ use Illuminate\Support\Facades\Log;
 class Listings extends Component
 {
     use WithPagination;
-    public $search = '';
+    public $searchTitle = '';
     public $sort = '';
-    public $search_category_id = null;
+    public $searchCategoryId = null;
     protected $queryString = ['search'];
 
-    public function updatingSearch()
+    public function updatingSearchTitle()
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSearchCategoryId()
     {
         $this->resetPage();
     }
@@ -26,10 +31,10 @@ class Listings extends Component
         $query = Listing::query();
         $categories = Category::all();
 
-        if (!empty($this->search)) {
+        if (!empty($this->searchTitle)) {
             $query = $this->searchTitle($query);
         }
-        if (!empty($this->search_category_id)) {
+        if (!empty($this->searchCategoryId)) {
             $query = $this->searchCategory($query);
         }
         if(!empty($this->sort))
@@ -47,7 +52,7 @@ class Listings extends Component
     public function searchTitle($query)
     {
         $query->where(function ($q) {
-            $q->where('title', 'like', '%' . $this->search . '%');
+            $q->where('title', 'like', '%' . $this->searchTitle . '%');
         });
 
         return $query;
@@ -55,7 +60,7 @@ class Listings extends Component
 
     public function searchCategory($query)
     {
-        return $query->where('category_id', $this->search_category_id);
+        return $query->where('category_id', $this->searchCategoryId);
     }
 
     public function sort($query)

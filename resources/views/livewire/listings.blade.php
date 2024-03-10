@@ -6,20 +6,23 @@
         </div>
     @endif
     <div class="flex">
-        <input type="text" wire:model.live="search" placeholder="What are you looking for?" class="flex-1 bg-gray-100 rounded-xl py-2 px-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" style="background-color: #4a5568">
-        <select wire:model.live="search_category_id"  id="category_id" name="category_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568">
-            <option value="">Select option</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
+        <input type="text" wire:model.live="searchTitle" placeholder="What are you looking for?" class="flex-1 bg-gray-100 rounded-xl py-2 px-4 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" style="background-color: #4a5568">
         <a href="{{ route('listings.create') }}" class="ml-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl">
             Create new listing
         </a>
     </div>
+
     <div class="flex mt-3">
         <div class="relative">
-            <select wire:model.live="sort" id="sort" name="sort" required class="block appearance-none border border-gray-300 rounded-lg py-2 px-4 bg-white text-gray-900 dark:bg-gray-700 dark:text-white dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <select wire:model.live="searchCategoryId"  id="category_id" name="category_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="">Select Category</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="relative">
+            <select wire:model.live="sort" id="sort" name="sort" required class="ml-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value="">Sort by</option>
                 <option value="price_high">Price (High to low)</option>
                 <option value="price_low">Price (Low to High)</option>
