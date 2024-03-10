@@ -40,6 +40,8 @@ class Listings extends Component
         if(!empty($this->sort))
         {
             $query = $this->sort($query);
+        } else {
+            $query = $query->orderBy('created_at', 'desc');
         }
         $listings = $query->paginate(5);
 
