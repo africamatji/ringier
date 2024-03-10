@@ -26,16 +26,16 @@
 
         <div style="display: flex; gap: 10px;">
             <div style="flex-grow: 1;">
-                <label for="category_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
                 <select id="category_id" name="category_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568">
+                    <option value="">Select Category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div style="flex-grow: 1;">
-                <label for="currency_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Currency</label>
                 <select id="currency_id" name="currency_id" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" style="background-color: #4a5568">
+                    <option value="">Select Currency</option>
                     @foreach($currencies as $currency)
                         <option value="{{ $currency->id }}">({{ $currency->symbol }}) {{ $currency->name }}</option>
                     @endforeach
