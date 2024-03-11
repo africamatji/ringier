@@ -31,7 +31,7 @@ class ListingController extends Controller
             ->with('message', "$request->title, created");
     }
 
-    public function getById(Listing $listing)
+    public function getListing(Listing $listing)
     {
         return view('listings.details', [
             'listing' => $listing
