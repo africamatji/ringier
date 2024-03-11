@@ -24,7 +24,7 @@
             </p>
             <p><strong>Contacts</strong> : {{ $listing->contact  }}</p>
             <p><strong>Location</strong> : {{ $listing->location  }}</p>
-            <p class="mt-2 text-gray-300 text-xs">Date Online : {{ $listing->updated_at  }}</p>
+            <p class="mt-2 text-gray-300 text-xs">Date Online : {{ $listing->created_at  }}</p>
             @if($listing->date_offline)
                 <p class="text-gray-500 text-xs">Date Offline : {{ $listing->date_offline  }}</p>
             @endif

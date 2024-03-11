@@ -50,7 +50,7 @@
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                         {{ $listing->description }}
                     </p>
-                    <p class="text-gray-300 text-xs">Date Online : {{ $listing->updated_at }}</p>
+                    <p class="text-gray-300 text-xs">Date Online : {{ $listing->created_at }}</p>
                     @if ($listing->date_offline)
                         <p class="text-gray-500 text-xs">Date Offline : {{ $listing->date_offline }}</p>
                     @endif

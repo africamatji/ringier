@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Listing;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Log;
 
 class Listings extends Component
 {
@@ -78,7 +77,7 @@ class Listings extends Component
                 $query->orderBy('created_at', 'desc');
                 break;
             case 'date_old':
-                $query->orderBy('updated_at', 'asc');
+                $query->orderBy('created_at', 'asc');
                 break;
         }
 
