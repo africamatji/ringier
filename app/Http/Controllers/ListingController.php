@@ -14,7 +14,7 @@ class ListingController extends Controller
         return view('listings.all');
     }
 
-    public function show()
+    public function showCreate()
     {
         $categories = Category::all();
         $currencies = Currency::all();
