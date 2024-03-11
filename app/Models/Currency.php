@@ -9,6 +9,11 @@ class Currency extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'code',
+        'name',
+        'symbol',
+    ];
     public function listings()
     {
         return $this->hasMany(Listing::class);
