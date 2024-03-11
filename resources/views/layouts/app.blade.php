@@ -17,7 +17,7 @@
 <div class="flex flex-col h-screen">
     <header class="flex items-center justify-between p-4 border-b border-gray-400">
         <div class="flex items-center justify-start">
-            <img src="https://www.ringier.com/wp-content/themes/ringiercorporate/assets/images/ringier-logo.svg" alt="Logo" class="h-8 mr-2">
+            <a href="{{ route('listings.home') }}"><img src="https://www.ringier.com/wp-content/themes/ringiercorporate/assets/images/ringier-logo.svg" alt="Logo" class="h-8 mr-2"></a>
             <span class="font-bold text-lg">Listing</span>
         </div>
         <nav>
