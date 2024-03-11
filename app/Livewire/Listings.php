@@ -13,7 +13,7 @@ class Listings extends Component
     public $searchTitle = '';
     public $sort = '';
     public $searchCategoryId = null;
-    protected $queryString = ['search'];
+    public $totalCount = 0;
 
     public function updatingSearchTitle()
     {
@@ -30,6 +30,7 @@ class Listings extends Component
         $query = Listing::query();
         $categories = Category::all();
 
+        $this->totalCount = $query->count();
         if (!empty($this->searchTitle)) {
             $query = $this->searchTitle($query);
         }

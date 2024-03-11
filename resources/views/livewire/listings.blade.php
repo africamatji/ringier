@@ -36,6 +36,7 @@
             <h4>No listings...</h4>
         </div>
     @else
+        <p class="text-s mt-2">{{ $totalCount }} total listings</p>
         <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             @foreach ($listings as $listing)
                 <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
