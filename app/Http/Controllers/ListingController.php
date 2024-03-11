@@ -31,15 +31,8 @@ class ListingController extends Controller
             ->with('message', "$request->title, created");
     }
 
-    public function all()
+    public function getById(Listing $listing)
     {
-        return view('listings.list');
-    }
-
-    public function getById($id)
-    {
-        $listing = Listing::with(['category', 'currency'])->find($id);
-
         return view('listings.details', [
             'listing' => $listing
         ]);
