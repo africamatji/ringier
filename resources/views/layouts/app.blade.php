@@ -22,7 +22,12 @@
         </div>
         <nav>
             <ul class="flex space-x-4">
-                <li><a href="#" class="text-white hover:text-gray-700">Login</a></li>
+                @auth
+                    <li><a href="{{ route('logout') }}" class="text-white hover:text-gray-700">Logout</a></li>
+                @else
+                    <li><a href="{{ route('login') }}" class="text-white hover:text-gray-700">Login</a></li>
+                @endauth
+
             </ul>
         </nav>
     </header>
